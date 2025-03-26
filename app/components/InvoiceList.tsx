@@ -3,6 +3,7 @@ import { InvoiceActions } from "./InvoiceActions";
 import prisma from "../utils/db";
 import { requireUser } from "../utils/hooks";
 import { formatCurrency } from "../utils/formatCurrency";
+import { Badge } from "@/components/ui/badge";
 
 async function getInvoices(userId: string) {
     const invoices = await prisma.invoice.findMany({
@@ -48,8 +49,12 @@ export async function InvoiceList() {
                         <TableCell>{
                             formatCurrency({ amount: invoice.total, currency: invoice.currency as any, })}
                         </TableCell>
-                        <TableCell>{invoice.status}</TableCell>
-                        <TableCell>{invoice.createdAt.toLocaleDateString()}</TableCell>
+                        <TableCell>
+                            <Badge>{invoice.status}</Badge>
+                        </TableCell>
+                        <TableCell>{new Intl.DateTimeFormat("es-PY", {
+                            dateStyle: "medium",
+                        }).format(new Date(invoice.createdAt))}</TableCell>
                         <TableCell className="text-right">
                             <InvoiceActions />
                         </TableCell>
