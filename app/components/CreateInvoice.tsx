@@ -18,7 +18,14 @@ import { invoiceSchema } from "../utils/zodSchema";
 import { formatCurrency } from "../utils/formatCurrency";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-export function CreateInvoice() {
+interface iAppProps {
+    firstName: string;
+    lastName: string;
+    address: string;
+    email: string;
+}
+
+export function CreateInvoice({ firstName, lastName, address, email }: iAppProps) {
     const [lastResult, action] = useActionState(createInvoice, undefined);
     const [form, fields] = useForm({
         id: "invoice-form",
@@ -128,8 +135,8 @@ export function CreateInvoice() {
                                 <Input
                                     name={fields.fromName.name}
                                     key={fields.fromName.key}
-                                    defaultValue={fields.fromName.initialValue}
                                     placeholder="Your Name"
+                                    defaultValue={firstName + " " + lastName}
                                 />
                                 {fields.fromName.errors && (
                                     <p className="text-sm text-red-500">{fields.fromName.errors}</p>
@@ -137,8 +144,8 @@ export function CreateInvoice() {
                                 <Input
                                     name={fields.fromEmail.name}
                                     key={fields.fromEmail.key}
-                                    defaultValue={fields.fromEmail.initialValue}
                                     placeholder="Your Email"
+                                    defaultValue={email}
                                 />
                                 {fields.fromEmail.errors && (
                                     <p className="text-sm text-red-500">{fields.fromEmail.errors}</p>
@@ -146,8 +153,8 @@ export function CreateInvoice() {
                                 <Input
                                     name={fields.fromAddress.name}
                                     key={fields.fromAddress.key}
-                                    defaultValue={fields.fromAddress.initialValue}
                                     placeholder="Your Address"
+                                    defaultValue={address}
                                 />
                                 {fields.fromAddress.errors && (
                                     <p className="text-sm text-red-500">{fields.fromAddress.errors}</p>
