@@ -6,9 +6,17 @@ import { Loader2 } from "lucide-react";
 
 interface iAppProps {
     text?: string;
+    variant?: "link" | 
+    "default" | 
+    "destructive" | 
+    "outline" | 
+    "secondary" | 
+    "ghost" | 
+    null | 
+    undefined;
 }
 
-export function SubmitButton({ text = "Submit" }: iAppProps) {
+export function SubmitButton({ text = "Submit", variant }: iAppProps) {
     const { pending } = useFormStatus();
     return (
         <>
@@ -20,6 +28,7 @@ export function SubmitButton({ text = "Submit" }: iAppProps) {
                 <Button
                     type="submit"
                     className="w-full"
+                    variant={variant}
                 >
                     {text}
                 </Button>
