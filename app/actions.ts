@@ -86,7 +86,7 @@ export async function createInvoice(prevState: any, formData: FormData) {
                 dateStyle: "long",
             }).format(new Date(submission.value.date)),
             totalAmount: formatCurrency({ amount: submission.value.total, currency: submission.value.currency as any }),
-            invoiceLink: process.env.NODE_ENV !== "production" ? `https://invoice-david.vercel.app/api/invoice/${data.id}` : 
+            invoiceLink: process.env.NODE_ENV !== "production" ? `http://localhost:3000/api/invoice/${data.id}` : 
             `https://invoice-saas-rust.vercel.app/api/invoice/${data.id}`
         }
     });
@@ -152,7 +152,8 @@ export async function editInvoice(prevState: any, formData: FormData) {
                 amount: submission.value.total,
                 currency: submission.value.currency as any,
             }),
-            invoiceLink: `http://localhost:3000/api/invoice/${data.id}`
+            invoiceLink: process.env.NODE_ENV !== "production" ? `http://localhost:3000/api/invoice/${data.id}` : 
+            `https://invoice-saas-rust.vercel.app/api/invoice/${data.id}`
         }
     });
 
