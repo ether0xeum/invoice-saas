@@ -240,7 +240,7 @@ export function CreateInvoice({ firstName, lastName, address, email }: iAppProps
                                     <SelectValue placeholder="Select due date" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="0">Due on Reciept</SelectItem>
+                                    <SelectItem value="1">Due on Reciept</SelectItem>
                                     <SelectItem value="15">Net 15</SelectItem>
                                     <SelectItem value="30">Net 30</SelectItem>
                                 </SelectContent>
